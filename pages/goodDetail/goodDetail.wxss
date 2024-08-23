@@ -58,3 +58,49 @@
   margin: 0 20rpx;
   text-align: justify;
 }
+
+/* table bar */
+.tabbar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 100rpx;
+  background-color: white;
+  border-top: 1rpx solid gainsboro;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabbar-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.cart-img {
+  width: 55rpx;
+  height: 55rpx;
+  margin-left: 20rpx;
+}
+
+.add-cart {
+  background-color: orange;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: white;
+  padding: 0 40rpx;
+  font-weight: 600;
+  font-size: 35rpx;
+}
+
+.buy-now {
+  background-color: red;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: white;
+  padding: 0 40rpx;
+  font-size: 35rpx;
+  font-weight: 600;
+}

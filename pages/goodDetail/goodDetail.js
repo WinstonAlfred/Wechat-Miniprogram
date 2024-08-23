@@ -23,12 +23,12 @@ Page({
     }
   },
   onShareTimeline(){
-    return{
-      title:this.data.good.title,
+    return {
+      title: this.data.good.title,
       query: {
-        id:this.data.good._id
+        id: this.data.good._id
       },
-      imageUrl:this.data.good.cover
+      imageUrl: this.data.good.cover
     }
   }
 

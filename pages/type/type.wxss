@@ -1,1 +1,24 @@
-/* pages/type/type.wxss */
+.type-box {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.type-left {
+  width: 250rpx;
+}
+
+.type-left view {
+  text-align: center;
+  padding: 20rpx 0;
+}
+
+.type-good-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.type-good-img {
+  width: 175rpx;
+  height: 175rpx;
+}

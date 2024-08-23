@@ -24,3 +24,17 @@
 <view>
   <view class="good-detail-box">{{good.text}}</view>
 </view>
+
+
+<view style="height: 120rpx;"></view>
+
+
+<view class="tabbar">
+  <view>
+    <image src="/images/cart_no.png" class="cart-img"/>
+  </view>
+  <view class="tabbar-right">
+    <view class="add-cart">加入购物车</view>
+    <view class="buy-now">立即购买</view>
+  </view>
+</view>
