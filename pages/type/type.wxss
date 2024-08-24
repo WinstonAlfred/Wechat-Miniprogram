@@ -6,6 +6,7 @@
 
 .type-left {
   width: 250rpx;
+  background-color: rgb(245, 245, 245);
 }
 
 .type-left view {
@@ -16,9 +17,60 @@
 .type-good-box {
   display: flex;
   flex-direction: row;
+  margin: 0 0 25rpx 15rpx;
 }
 
 .type-good-img {
-  width: 175rpx;
-  height: 175rpx;
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 10rpx;
+}
+
+.type-good-right {
+  width: 370rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.choose-num-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.choose-num-box image {
+  width: 50rpx;
+  height: 50rpx
+}
+
+.bottom-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.type-good-title {
+  font-size: 38rpx;
+  width: 350rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.type-good-tag {
+  color: grey;
+  font-size: 28rpx;
+  font-weight: 100;
+}
+
+.type-good-price {
+  color:orangered;
+  font-size: 35rpx;
+}
+
+.type-good-number {
+  margin: 0 20rpx;
 }
