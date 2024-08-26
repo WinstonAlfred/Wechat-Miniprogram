@@ -34,9 +34,10 @@
 }
 
 .good-title {
-  font-size: 28rpx;
+  font-size: 35rpx;
   color: #333;
   margin-bottom: 10rpx;
+  font-weight: 560;
 }
 
 .good-right-bottom {
@@ -95,4 +96,10 @@
   padding: 15rpx 20rpx;
   border-radius: 30rpx;
   border: none;
+}
+
+.cart-tag {
+  color: grey;
+  font-size: 10;
+  font-weight: 400;
 }

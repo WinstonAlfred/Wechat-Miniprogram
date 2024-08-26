@@ -24,7 +24,7 @@
         <view class="type-good-title">
           <text>{{item.title}}</text>
         </view>
-        <view class="type-good-tag">剩余:{{item.bought}}</view>
+        <view class="type-good-tag">剩余:{{item.stock}}</view>
         <view class="bottom-box">
           <view class="type-good-price">¥{{item.price}}</view>
         </view>

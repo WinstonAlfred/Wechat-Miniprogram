@@ -5,6 +5,7 @@
       <image src="{{item.cover}}" class="good-img"/>
       <view class="good-right">
         <view class="good-title">{{item.title}}</view>
+        <view class="cart-tag">剩余:{{item.stock}}</view>
         <view class="good-right-bottom">
           <view class="good-price">¥{{item.price}}</view>
           <view class="good-quantity-control">
