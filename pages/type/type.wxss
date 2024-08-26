@@ -67,3 +67,7 @@
 .type-good-number {
   margin: 0 20rpx;
 }
+
+.choose-type {
+  background-color: rgb(247, 102, 102);
+}

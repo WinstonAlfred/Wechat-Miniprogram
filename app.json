@@ -5,6 +5,7 @@
     "pages/cart/cart",
     "pages/me/me",
     "pages/index/bannerDetail/bannerDetail",
+    "pages/index/typeDetail/typeDetail",
     "pages/goodDetail/goodDetail"
   ],
   "window": {

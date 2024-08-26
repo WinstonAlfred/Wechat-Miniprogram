@@ -24,7 +24,7 @@
 <view class="category-wrap">
   <block wx:for="{{categoriesList}}" wx:key="index">
     <view>
-      <image src="{{item.image}}" class="category-image" bindtap="toCategories"/>
+      <image src="{{item.image}}" class="category-image" bind:tap="toCategories" data-name="{{item.name}}"/>
       <view class="category-title">{{item.name}}</view>
     </view>
   </block>
@@ -37,7 +37,7 @@
     <image src="{{item.cover}}" class="goods-img"/>
     <view class="goods-title"><text>{{item.title}}</text></view>
     <view class="goods-bottom">
-      <view class="goods-tag">3人购买</view>
+      <view class="goods-tag">{{item.bought}}人购买</view>
       <view class="goods-price">¥{{item.price}}</view>
     </view>
   </view>

@@ -1,0 +1,13 @@
+<!-- Product Page -->
+<view class="goods-box">
+<block wx:for="{{goodsList}}">
+  <view bind:tap="toGoodDetail" data-id="{{item._id}}">
+    <image src="{{item.cover}}" class="goods-img"/>
+    <view class="goods-title"><text>{{item.title}}</text></view>
+    <view class="goods-bottom">
+      <view class="goods-tag">{{item.bought}}人购买</view>
+      <view class="goods-price">¥{{item.price}}</view>
+    </view>
+  </view>
+</block>
+</view>

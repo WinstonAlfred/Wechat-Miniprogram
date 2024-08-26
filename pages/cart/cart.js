@@ -1,66 +1,64 @@
-// pages/cart/cart.js
+const app = getApp()
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    cartList: [],
+    totalPrice: 0
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad(options) {
-
+  onLoad: function (options) {
+    // You can initialize data here if needed
   },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady() {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
+  
   onShow() {
-
+    this.updateCart();
   },
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide() {
-
+  updateCart() {
+    let cartList = app.globalData.cartList || [];
+    // Ensure each item has a quantity
+    cartList = cartList.map(item => ({
+      ...item,
+      quantity: item.quantity || 1,
+      selected: item.selected !== undefined ? item.selected : true
+    }));
+    const totalPrice = this.calculateTotalPrice(cartList);
+    this.setData({
+      cartList: cartList,
+      totalPrice: totalPrice
+    });
+    app.globalData.cartList = cartList;
+    wx.setStorageSync('cartList', cartList);
   },
 
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload() {
-
+  calculateTotalPrice(cartList) {
+    return cartList.reduce((total, item) => {
+      return item.selected ? total + (parseFloat(item.price) * item.quantity) : total;
+    }, 0).toFixed(2);
   },
 
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh() {
-
+  onAddItem(e) {
+    const index = e.currentTarget.dataset.index;
+    const cartList = this.data.cartList;
+    cartList[index].quantity += 1;
+    this.updateCart();
   },
 
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom() {
-
+  onMinusItem(e) {
+    const index = e.currentTarget.dataset.index;
+    const cartList = this.data.cartList;
+    if (cartList[index].quantity > 1) {
+      cartList[index].quantity -= 1;
+    } else {
+      cartList.splice(index, 1);
+    }
+    this.updateCart();
   },
 
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage() {
-
+  onToggleSelect(e) {
+    const index = e.currentTarget.dataset.index;
+    const cartList = this.data.cartList;
+    cartList[index].selected = !cartList[index].selected;
+    this.updateCart();
   }
 })

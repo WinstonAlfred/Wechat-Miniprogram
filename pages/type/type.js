@@ -2,7 +2,9 @@
 Page({
 
   data: {
-
+    currentType: 0,  // Add this line to initialize currentType
+    categoriesList: [],
+    goodsList: []
   },
 
   onLoad: function (options) {
@@ -14,9 +16,10 @@ Page({
   onShow() {
     this.getCategories()
 
+    this.getGoodsList()
   },
 
-    //getCategories Database Data
+  //getCategories Database Data
   getCategories(){
     wx.cloud.database().collection('categories').get()
     .then(res=>{
@@ -27,7 +30,7 @@ Page({
     })
   },
 
-// getProducts Database Data
+  //getProducts Database Data
   getGoodsList(){
     wx.cloud.database().collection('goods').get()
     .then(res=>{
@@ -43,5 +46,32 @@ Page({
     wx.navigateTo({
       url: "/pages/goodDetail/goodDetail?id=" + id ,
     })
+  },
+
+  //getGoods Based on it's type
+  getTypeGoodsList(event) {
+    console.log(event.currentTarget.dataset.index)
+    console.log(event.currentTarget.dataset.name)  // Change this line
+    let index = event.currentTarget.dataset.index
+    let categoryName = event.currentTarget.dataset.name  // Change this line
+
+    this.setData({
+      currentType: index
+    })
+
+    wx.cloud.database().collection("goods")
+      .where({
+        type: categoryName  // Change this line
+      })
+      .get()
+      .then(res => {
+        console.log("Filtered goods:", res.data)  // Add this line for debugging
+        this.setData({
+          goodsList: res.data
+        })
+      })
+      .catch(err => {  // Add error handling
+        console.error("Error fetching filtered goods:", err)
+      })
   },
 })

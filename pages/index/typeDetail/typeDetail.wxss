@@ -1,0 +1,37 @@
+/* Product CSS */
+.goods-box {
+  display: flex;
+  flex-direction: row;
+  padding: 0 20rpx;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+.goods-img {
+  width: 345rpx;
+  height: 350rpx;
+  border-radius: 20rpx;
+}
+.goods-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  margin: 0 10rpx 30rpx 10rpx;
+}
+.goods-title {
+  font-size: 36rpx;
+  margin: 10rpx;
+  width: 330rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.goods-price {
+  color: red;
+  font-size: 30rpx;
+}
+.goods-tag {
+  color: grey;
+}

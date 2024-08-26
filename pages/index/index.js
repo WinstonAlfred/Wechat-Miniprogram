@@ -46,10 +46,11 @@ Page({
       })
     })
   },
-
-  toCategories(){
-    wx.switchTab({
-      url: '/pages/type/type',
+  toCategories(event){
+    console.log(event.currentTarget.dataset)
+    let id = event.currentTarget.dataset.name
+    wx.navigateTo({
+      url: '/pages/index/typeDetail/typeDetail?id=' +id,
     })
   },
 
