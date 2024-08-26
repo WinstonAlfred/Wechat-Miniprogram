@@ -1,66 +1,47 @@
 // pages/type/type.js
 Page({
 
-  /**
-   * Page initial data
-   */
   data: {
 
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad(options) {
+  onLoad: function (options) {
+    this.getCategories()
 
+    this.getGoodsList()
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady() {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
   onShow() {
+    this.getCategories()
 
   },
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide() {
-
+    //getCategories Database Data
+  getCategories(){
+    wx.cloud.database().collection('categories').get()
+    .then(res=>{
+      console.log(res)
+      this.setData({
+        categoriesList:res.data
+      })
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload() {
-
+// getProducts Database Data
+  getGoodsList(){
+    wx.cloud.database().collection('goods').get()
+    .then(res=>{
+      console.log(res)
+      this.setData({
+        goodsList:res.data
+      })
+    })
   },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh() {
-
+  toGoodDetail(event){
+    console.log(event.currentTarget.dataset.id)
+    let id = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: "/pages/goodDetail/goodDetail?id=" + id ,
+    })
   },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage() {
-
-  }
 })

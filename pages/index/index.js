@@ -1,14 +1,17 @@
 Page({
 
   data: {
-    
+
   },
 
   onLoad: function (options) {
     
     this.getBanners()
 
+    this.getCategories()
+
     this.getGoodsList()
+
   },
 
   //getBanner Database Data
@@ -28,6 +31,29 @@ Page({
       url: "/pages/index/bannerDetail/bannerDetail?id=" + id ,
     })
   },
+
+  //getCategories Database Data
+  getCategories(){
+    wx.cloud.database().collection('categories')
+    .where({
+      isShowOnHome:true
+    })
+    .get()
+    .then(res=>{
+      console.log(res)
+      this.setData({
+        categoriesList:res.data
+      })
+    })
+  },
+
+  toCategories(){
+    wx.switchTab({
+      url: '/pages/type/type',
+    })
+  },
+
+  // getProducts Database Data
   getGoodsList(){
     wx.cloud.database().collection('goods').get()
     .then(res=>{
@@ -43,7 +69,7 @@ Page({
     wx.navigateTo({
       url: "/pages/goodDetail/goodDetail?id=" + id ,
     })
-  }
+  },
 
 
 })

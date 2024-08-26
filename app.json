@@ -8,9 +8,9 @@
     "pages/goodDetail/goodDetail"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "天艺",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarBackgroundColor": "#FF6146"
   },
   "style": "v2",
   "componentFramework": "glass-easel",

@@ -1,8 +1,11 @@
 <!-- Click "CTRL + ?" for fast comment -->
 <!-- Search Box -->
-<view  class="search-box">
+
+<view class="search-wrap">
+  <view  class="search-box">
   <input type="text" placeholder="请输入商品关键词" class="input-cell"/>
   <image src="/images/search.png" class="search-img"/>
+</view>
 </view>
 
 
@@ -18,23 +21,27 @@
 </view>
 
 <!-- Category Page -->
-
+<view class="category-wrap">
+  <block wx:for="{{categoriesList}}" wx:key="index">
+    <view>
+      <image src="{{item.image}}" class="category-image" bindtap="toCategories"/>
+      <view class="category-title">{{item.name}}</view>
+    </view>
+  </block>
+</view>
 
 <!-- Product Page -->
 <view class="goods-box">
-
 <block wx:for="{{goodsList}}">
   <view bind:tap="toGoodDetail" data-id="{{item._id}}">
     <image src="{{item.cover}}" class="goods-img"/>
     <view class="goods-title"><text>{{item.title}}</text></view>
     <view class="goods-bottom">
       <view class="goods-tag">3人购买</view>
-      <view class="goods-price">{{item.price}}块</view>
+      <view class="goods-price">¥{{item.price}}</view>
     </view>
   </view>
 </block>
-
-
 </view>
 
 

@@ -11,7 +11,7 @@
 
 <view class="good-price-tag">
   <view class="good-title">{{good.title}}</view>
-  <view class="good-price">{{good.price}}块</view>
+  <view class="good-price">¥{{good.price}}</view>
 </view>
 
 <view class="good-tag-box">

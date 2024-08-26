@@ -1,21 +1,28 @@
  /* Search CSS */
+
+ .search-wrap {
+    padding: 0 20rpx 20rpx 20rpx;
+    background-color: #FF6146;
+ }
 .search-box {
   display: flex;
   flex-direction: row;
-  border: 1rpx solid #f7f7f7;
-  margin: 0 20rpx;
+  border: 1rpx solid gainsboro;
   padding: 0 20rpx;
-  border-radius: 20rpx;
   justify-content: space-between;
   align-items: center; 
+  background-color: white;
+  border-radius: 20rpx;
 }
 .input-cell {
   padding: 20rpx 20rpx;
   width: 500rpx;
+  background-color: white;
 }
 .search-img {
   width: 50rpx;
   height: 50rpx;
+  background-color: white;
 }
 
 
@@ -34,6 +41,23 @@
 
 
 /* Category CSS */
+.category-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.category-image {
+  display: flex;
+  flex-direction: row;
+  width: 190rpx;
+  height: 190rpx;
+}
+.category-title {
+  text-align: center;
+  font-size: 28rpx;
+  margin-bottom: 40rpx;
+}
 
 
 /* Product CSS */
@@ -56,23 +80,19 @@
   margin-bottom: 30rpx;
   margin: 0 10rpx 30rpx 10rpx;
 }
-
 .goods-title {
   font-size: 36rpx;
   margin: 10rpx;
-
   width: 330rpx;
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-
 .goods-price {
   color: red;
   font-size: 30rpx;
 }
-
 .goods-tag {
   color: grey;
 }
