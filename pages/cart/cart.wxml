@@ -1,7 +1,7 @@
 <view class="cart-container">
   <block wx:for="{{cartList}}" wx:key="index">
     <view class="good-box">
-      <image src="{{item.selected ? '/images/choose.png' : '/images/choose_no.png'}}" class="choose-img" bindtap="onToggleSelect" data-index="{{index}}"/>
+      <image src="{{item.selected ? 'https://7469-tianyi-9ggnnj8xa7b81241-1328856567.tcb.qcloud.la/kit-cms-upload/2024-08-26/15391724688001539_choose.webp?sign=971948b20a9a151dc6c18dd4e2c3023d&t=1724688126' : 'https://7469-tianyi-9ggnnj8xa7b81241-1328856567.tcb.qcloud.la/kit-cms-upload/2024-08-26/19781724688015181_choose_no.webp?sign=4f11ab9480bde5ddde10e87187dcef05&t=1724688153'}}" class="choose-img" bindtap="onToggleSelect" data-index="{{index}}"/>
       <image src="{{item.cover}}" class="good-img"/>
       <view class="good-right">
         <view class="good-title">{{item.title}}</view>
@@ -9,9 +9,9 @@
         <view class="good-right-bottom">
           <view class="good-price">¥{{item.price}}</view>
           <view class="good-quantity-control">
-            <image src="/images/minus.png" class="add-delete-img" bindtap="onMinusItem" data-index="{{index}}"/>
+            <image src="https://7469-tianyi-9ggnnj8xa7b81241-1328856567.tcb.qcloud.la/kit-cms-upload/2024-08-26/17281724686896728_minus.png?sign=1a08c1388996477e0e5ffe08e234ed15&t=1724687114" class="add-delete-img" bindtap="onMinusItem" data-index="{{index}}"/>
             <view class="type-good-number">{{item.quantity}}</view>
-            <image src="/images/add.png" class="add-delete-img" bindtap="onAddItem" data-index="{{index}}"/>
+            <image src="https://7469-tianyi-9ggnnj8xa7b81241-1328856567.tcb.qcloud.la/kit-cms-upload/2024-08-26/19391724686876469_add.png?sign=d36c17cf350f6cdd29d94a60f5c0aa39&t=1724687082" class="add-delete-img" bindtap="onAddItem" data-index="{{index}}"/>
           </view>
         </view>
       </view>

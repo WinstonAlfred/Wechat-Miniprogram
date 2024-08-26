@@ -58,13 +58,13 @@
 }
 
 .add-delete-img {
-  width: 40rpx;
-  height: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
   padding: 10rpx;
 }
 
 .type-good-number {
-  font-size: 28rpx;
+  font-size: 35rpx;
   margin: 0 20rpx;
   min-width: 40rpx;
   text-align: center;
