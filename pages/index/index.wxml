@@ -1,18 +1,15 @@
-<!-- Click "CTRL + ?" for fast comment -->
 <!-- Search Box -->
-
 <view class="search-wrap" bindtap="toSearch">
-  <view  class="search-box">
-  <input type="text" placeholder="请输入商品关键词" class="input-cell"/>
-  <image src="/images/search.png" class="search-img"/>
+  <view class="search-box">
+    <input type="text" placeholder="请输入商品关键词" class="input-cell"/>
+    <image src="/images/search.png" class="search-img"/>
+  </view>
 </view>
-</view>
-
 
 <!-- Carousel Image -->
 <view class="swiper-wrap">
   <swiper class="swiper-box" indicator-dots="true" indicator-color="#fff" indicator-active-color="red" autoplay="true">
-    <block wx:for="{{bannerList}}">
+    <block wx:for="{{bannerList}}" wx:key="_id">
       <swiper-item>
         <image src="{{item.cover}}" class="swiper-img" bind:tap="toBannerDetail" data-id="{{item._id}}"/> 
       </swiper-item>
@@ -22,7 +19,7 @@
 
 <!-- Category Page -->
 <view class="category-wrap">
-  <block wx:for="{{categoriesList}}" wx:key="index">
+  <block wx:for="{{categoriesList}}" wx:key="_id">
     <view>
       <image src="{{item.image}}" class="category-image" bind:tap="toCategories" data-name="{{item.name}}"/>
       <view class="category-title">{{item.name}}</view>
@@ -32,7 +29,7 @@
 
 <!-- Product Page -->
 <view class="goods-box">
-  <block wx:for="{{displayedGoods}}">
+  <block wx:for="{{goodsList}}" wx:key="_id">
     <view bind:tap="toGoodDetail" data-id="{{item._id}}">
       <image src="{{item.cover}}" class="goods-img"/>
       <view class="goods-title"><text>{{item.title}}</text></view>
@@ -44,12 +41,17 @@
   </block>
 </view>
 
-<!-- See More Button -->
-<view wx:if="{{displayedGoods.length < goodsList.length}}" class="see-more-button" bind:tap="loadMoreGoods">
-View More
+<!-- Loading indicator -->
+<view class="loading" wx:if="{{isLoading}}">Loading...</view>
+
+<!-- "Load More" button -->
+<view wx:if="{{hasMore && !isLoading}}" class="see-more-button" bind:tap="loadMoreGoods">
+  View More
+</view>
+
+<!-- No more items indicator -->
+<view wx:if="{{!hasMore && goodsList.length > 0}}" class="no-more-items">
+  No more items
 </view>
 
 <view style="height: 100rpx;"></view>
-
-
-

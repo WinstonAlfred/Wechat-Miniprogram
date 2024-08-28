@@ -97,14 +97,29 @@
   color: grey;
 }
 
-.see-more-button {
-  width: 200rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+/* Pagination Styles */
+.loading {
   text-align: center;
-  background-color: #f0f0f0;
-  color: #333;
-  border-radius: 40rpx;
-  margin: 20rpx auto;
+  padding: 20rpx;
   font-size: 28rpx;
+  color: #888;
+}
+
+.see-more-button {
+  display: block;
+  width: 80%;
+  margin: 20rpx auto;
+  padding: 20rpx;
+  text-align: center;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+
+.no-more-items {
+  text-align: center;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #888;
 }

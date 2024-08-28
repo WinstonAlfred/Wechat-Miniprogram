@@ -1,103 +1,96 @@
 Page({
-
   data: {
     bannerList: [],
     categoriesList: [],
     goodsList: [],
-    displayedGoods: [],
     pageSize: 10,
-    currentPage: 1
+    currentPage: 0,
+    isLoading: false,
+    hasMore: true
   },
 
   onLoad: function (options) {
-    
     this.getBanners()
-
     this.getCategories()
-
     this.getGoodsList()
-
   },
 
-  //getBanner Database Data
+  // getBanner Database Data
   getBanners() {
     wx.cloud.database().collection('banner').get()
-    .then(res=>{
-      console.log(res)
-      this.setData({
-        bannerList: res.data
-      })
-    })
-  },
-  toBannerDetail(event){
-    console.log(event.currentTarget.dataset.id)
-    let id = event.currentTarget.dataset.id
-    wx.navigateTo({
-      url: "/pages/index/bannerDetail/bannerDetail?id=" + id ,
-    })
-  },
-
-  //getCategories Database Data
-  getCategories(){
-    wx.cloud.database().collection('categories')
-    .where({
-      isShowOnHome:true
-    })
-    .get()
-    .then(res=>{
-      console.log(res)
-      this.setData({
-        categoriesList:res.data
-      })
-    })
-  },
-  toCategories(event){
-    console.log(event.currentTarget.dataset)
-    let id = event.currentTarget.dataset.name
-    wx.navigateTo({
-      url: '/pages/index/typeDetail/typeDetail?id=' +id,
-    })
-  },
-
-  // getProducts Database Data
-  getGoodsList() {
-    wx.cloud.database().collection('goods').get()
     .then(res => {
-      console.log(res)
-      this.setData({
-        goodsList: res.data
-      }, () => {
-        this.updateDisplayedGoods()
-      })
+      console.log('Banners:', res)
+      this.setData({ bannerList: res.data })
     })
   },
-  toGoodDetail(event){
-    console.log(event.currentTarget.dataset.id)
+
+  toBannerDetail(event) {
     let id = event.currentTarget.dataset.id
-    wx.navigateTo({
-      url: "/pages/goodDetail/goodDetail?id=" + id ,
+    wx.navigateTo({ url: "/pages/index/bannerDetail/bannerDetail?id=" + id })
+  },
+
+  // getCategories Database Data
+  getCategories() {
+    wx.cloud.database().collection('categories')
+    .where({ isShowOnHome: true })
+    .get()
+    .then(res => {
+      console.log('Categories:', res)
+      this.setData({ categoriesList: res.data })
     })
   },
 
-  toSearch(){
-    wx.navigateTo({
-      url: '/pages/index/search/search',
-    })
+  toCategories(event) {
+    let id = event.currentTarget.dataset.name
+    wx.navigateTo({ url: '/pages/index/typeDetail/typeDetail?id=' + id })
   },
 
-  updateDisplayedGoods() {
-    const { goodsList, pageSize, currentPage } = this.data
-    const displayedGoods = goodsList.slice(0, pageSize * currentPage)
-    this.setData({ displayedGoods })
+  // getProducts Database Data with Pagination
+  getGoodsList() {
+    if (this.data.isLoading || !this.data.hasMore) return
+
+    this.setData({ isLoading: true })
+
+    const db = wx.cloud.database()
+    const skip = this.data.currentPage * this.data.pageSize
+
+    db.collection('goods')
+      .skip(skip)
+      .limit(this.data.pageSize)
+      .get()
+      .then(res => {
+        console.log('Goods:', res)
+        const newGoods = res.data
+        const hasMore = newGoods.length === this.data.pageSize
+
+        this.setData({
+          goodsList: this.data.goodsList.concat(newGoods),
+          currentPage: this.data.currentPage + 1,
+          isLoading: false,
+          hasMore: hasMore
+        })
+      })
+      .catch(err => {
+        console.error('Error loading goods:', err)
+        this.setData({ isLoading: false })
+        wx.showToast({ title: 'Failed to load goods', icon: 'none' })
+      })
+  },
+
+  toGoodDetail(event) {
+    let id = event.currentTarget.dataset.id
+    wx.navigateTo({ url: "/pages/goodDetail/goodDetail?id=" + id })
+  },
+
+  toSearch() {
+    wx.navigateTo({ url: '/pages/index/search/search' })
   },
 
   loadMoreGoods() {
-    this.setData({
-      currentPage: this.data.currentPage + 1
-    }, () => {
-      this.updateDisplayedGoods()
-    })
+    this.getGoodsList()
   },
 
-
+  onReachBottom: function() {
+    this.loadMoreGoods()
+  }
 })
