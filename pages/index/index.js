@@ -72,5 +72,11 @@ Page({
     })
   },
 
+  toSearch(){
+    wx.navigateTo({
+      url: '/pages/index/search/search',
+    })
+  }
+
 
 })

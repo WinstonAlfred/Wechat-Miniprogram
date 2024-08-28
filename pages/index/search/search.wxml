@@ -1,0 +1,22 @@
+
+<!-- searchBar -->
+<view class="search-wrap" bindtap="toSearch">
+  <view  class="search-box">
+  <input bindinput="getValue" type="text" placeholder="请输入商品关键词" class="input-cell"/>
+  <image src="/images/search.png" class="search-img" bindtap="search" />
+</view>
+</view>
+
+<!-- product result -->
+<block wx:for="{{goodList}}">
+  <view class="good-box" bind:tap="toGoodDetail" data-id="{{item._id}}">
+    <image src="{{item.cover}}" class="good-img"/>
+    <view class="right-box">
+      <view class="title">{{item.title}}</view>
+      <view class="right-bottom-box">
+      <view class="tag">{{item.bought}}人购买</view>
+      <view class="price">¥{{item.price}}</view>
+      </view>
+    </view>
+  </view>
+</block>

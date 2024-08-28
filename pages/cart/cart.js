@@ -32,9 +32,12 @@ Page({
   },
 
   calculateTotalPrice(cartList) {
-    return cartList.reduce((total, item) => {
+    const total = cartList.reduce((total, item) => {
       return item.selected ? total + (parseFloat(item.price) * item.quantity) : total;
-    }, 0).toFixed(2);
+    }, 0);
+    
+    // Format the total price in Rupiah with thousands separators
+    return 'Rp' + total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   },
 
   onAddItem(e) {
@@ -60,5 +63,13 @@ Page({
     const cartList = this.data.cartList;
     cartList[index].selected = !cartList[index].selected;
     this.updateCart();
-  }
+  },
+
+    toGoodDetail(event){
+    console.log(event.currentTarget.dataset.id)
+    let id = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: "/pages/goodDetail/goodDetail?id=" + id ,
+    })
+  },
 })

@@ -6,7 +6,7 @@
     <view class="goods-title"><text>{{item.title}}</text></view>
     <view class="goods-bottom">
       <view class="goods-tag">{{item.bought}}人购买</view>
-      <view class="goods-price">¥{{item.price}}</view>
+      <view class="goods-price">Rp{{item.price}}</view>
     </view>
   </view>
 </block>

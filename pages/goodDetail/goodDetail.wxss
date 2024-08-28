@@ -80,8 +80,8 @@
 }
 
 .cart-img {
-  width: 55rpx;
-  height: 55rpx;
+  width: 80rpx;
+  height: 80rpx;
   margin-left: 20rpx;
 }
 
@@ -111,7 +111,7 @@
   width: 40rpx;
   height: 40rpx;
   position: absolute;
-  left: 65rpx;
+  left: 79rpx;
   top: 0;
   color: white;
   text-align: center;

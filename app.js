@@ -13,7 +13,7 @@ App({
   
   globalData: {
     userInfo: null,
-
+    
     //cartList
     cartList:[]
   }

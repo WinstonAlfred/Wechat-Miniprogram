@@ -11,7 +11,7 @@
 
 <view class="good-price-tag">
   <view class="good-title">{{good.title}}</view>
-  <view class="good-price">¥{{good.price}}</view>
+  <view class="good-price">Rp{{good.price}}</view>
 </view>
 
 <view class="good-tag-box">
@@ -36,6 +36,6 @@
   </view>
   <view class="tabbar-right">
     <view class="add-cart" bindtap="addCart">加入购物车</view>
-    <view class="buy-now">立即购买</view>
+    <!-- <view class="buy-now">立即购买</view> -->
   </view>
 </view>
