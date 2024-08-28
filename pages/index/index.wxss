@@ -96,3 +96,15 @@
 .goods-tag {
   color: grey;
 }
+
+.see-more-button {
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 40rpx;
+  margin: 20rpx auto;
+  font-size: 28rpx;
+}

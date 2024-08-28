@@ -1,7 +1,12 @@
 Page({
 
   data: {
-
+    bannerList: [],
+    categoriesList: [],
+    goodsList: [],
+    displayedGoods: [],
+    pageSize: 10,
+    currentPage: 1
   },
 
   onLoad: function (options) {
@@ -55,12 +60,14 @@ Page({
   },
 
   // getProducts Database Data
-  getGoodsList(){
+  getGoodsList() {
     wx.cloud.database().collection('goods').get()
-    .then(res=>{
+    .then(res => {
       console.log(res)
       this.setData({
-        goodsList:res.data
+        goodsList: res.data
+      }, () => {
+        this.updateDisplayedGoods()
       })
     })
   },
@@ -76,7 +83,21 @@ Page({
     wx.navigateTo({
       url: '/pages/index/search/search',
     })
-  }
+  },
+
+  updateDisplayedGoods() {
+    const { goodsList, pageSize, currentPage } = this.data
+    const displayedGoods = goodsList.slice(0, pageSize * currentPage)
+    this.setData({ displayedGoods })
+  },
+
+  loadMoreGoods() {
+    this.setData({
+      currentPage: this.data.currentPage + 1
+    }, () => {
+      this.updateDisplayedGoods()
+    })
+  },
 
 
 })
