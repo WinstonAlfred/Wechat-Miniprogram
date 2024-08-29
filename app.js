@@ -1,9 +1,12 @@
 // app.js
+import { ENV } from './env.js';
+
+
 App({
   onLaunch() {
     
     wx.cloud.init({
-      env:'tianyi-9ggnnj8xa7b81241'
+      env: ENV.CLOUD_ENV
     })
     
   if(wx.getStorageSync('cartList')){
