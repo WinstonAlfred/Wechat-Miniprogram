@@ -7,7 +7,9 @@
     "pages/index/bannerDetail/bannerDetail",
     "pages/index/typeDetail/typeDetail",
     "pages/goodDetail/goodDetail",
-    "pages/index/search/search"
+    "pages/index/search/search",
+    "order/order",
+    "pages/order/order"
   ],
   "window": {
     "navigationBarTextStyle": "white",

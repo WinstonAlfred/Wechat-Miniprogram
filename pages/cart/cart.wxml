@@ -21,12 +21,14 @@
   </block>
   <block wx:else>
     <view class="empty-cart">
-      <text>购物车是空的</text>
+      <image class="empty-img" src="/images/shoppingbag_no.jpg" mode=""/>
     </view>
   </block>
 </view>
 
 <view class="cart-footer">
   <view class="total-price">总计: {{totalPrice}}</view>
-  <!-- <button class="checkout-btn" bindtap="onCheckout">结算</button> -->
+  <view class="button-container">
+    <button class="checkout-btn" bindtap="onCheckout">结算</button>
+  </view>
 </view>

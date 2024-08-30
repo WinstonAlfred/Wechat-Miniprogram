@@ -1,0 +1,36 @@
+<view class="order-container">
+  <view class="name-box">
+    <view class="name-title">名字</view>
+    <input class="name-input" placeholder="请输入名字" bindinput="onNameInput" value="{{name}}"/>
+  </view>
+  <view class="phone-box">
+    <view class="phone-title">联系电话</view>
+    <input class="phone-input" placeholder="请输入联系电话" bindinput="onPhoneInput" value="{{phone}}"/>
+  </view>
+  <block wx:if="{{orderItems.length > 0}}">
+    <block wx:for="{{orderItems}}" wx:key="index">
+      <view class="good-box">
+        <image src="{{item.cover}}" class="good-img"/>
+        <view class="good-right">
+          <view class="good-title">{{item.title}}</view>
+          <view class="order-tag">数量: {{item.quantity}}</view>
+          <view class="good-right-bottom">
+            <view class="good-price">Rp{{item.price}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class="empty-order">
+      <text>订单是空的</text>
+    </view>
+  </block>
+</view>
+
+<view class="order-footer">
+  <view class="total-price">总计: {{totalPrice}}</view>
+  <view class="button-container">
+    <button class="place-order-btn" bindtap="onPlaceOrder">提交订单</button>
+  </view>
+</view>

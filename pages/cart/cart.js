@@ -65,6 +65,20 @@ Page({
     this.updateCart();
   },
 
+  onCheckout() {
+    if (this.data.cartList.length === 0) {
+      wx.showToast({
+        title: 'Your cart is empty. Please add items before checkout.',
+        icon: 'none',
+        duration: 2000
+      });
+    } else {
+      wx.navigateTo({
+        url: '/pages/order/order',
+      });
+    }
+  },
+
     toGoodDetail(event){
     console.log(event.currentTarget.dataset.id)
     let id = event.currentTarget.dataset.id
