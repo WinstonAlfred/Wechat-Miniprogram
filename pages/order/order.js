@@ -1,4 +1,5 @@
 const app = getApp()
+const util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -45,7 +46,10 @@ Page({
   },
 
   onPlaceOrder: function () {
-    if (!this.data.name || !this.data.phone) {
+    console.log('Current name:', this.data.name);
+    console.log('Current phone:', this.data.phone);
+
+    if (!this.data.name.trim() || !this.data.phone.trim()) {
       wx.showToast({
         title: 'Please fill in name and phone',
         icon: 'none'
@@ -53,23 +57,56 @@ Page({
       return;
     }
 
-    // Here you would typically send the order to your backend
-    // For this example, we'll just show a success message and clear the cart
-    wx.showToast({
-      title: 'Order placed successfully!',
-      icon: 'none',
-      duration: 2000
+    // Prepare the goods data for the database
+    const goodsForDatabase = this.data.orderItems.map(item => ({
+      id: item._id,
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      cover: item.cover
+    }));
+
+    console.log('Placing order with data:', {
+      name: this.data.name,
+      phone: this.data.phone,
+      goods: goodsForDatabase,
+      totalMoney: this.data.totalPrice,
+      time: util.formatTime(new Date())
     });
 
-    // Clear selected items from the cart
-    const cartList = app.globalData.cartList || [];
-    app.globalData.cartList = cartList.filter(item => !item.selected);
-    wx.setStorageSync('cartList', app.globalData.cartList);
+    wx.cloud.database().collection('shop_order').add({
+      data: {
+        name: this.data.name,
+        phone: this.data.phone,
+        goods: goodsForDatabase,
+        totalMoney: this.data.totalPrice,
+        time: util.formatTime(new Date())
+      }
+    }).then(res => {
+      console.log('Order added successfully:', res)
+      wx.showToast({
+        title: 'Order placed successfully!',
+        icon: 'none',
+        duration: 2000
+      })
 
-    // Navigate back to the cart page after a short delay
-    setTimeout(() => {
-      wx.navigateBack();
-    }, 2000);
+      // Clear selected items from the cart
+      const cartList = app.globalData.cartList || [];
+      app.globalData.cartList = cartList.filter(item => !item.selected);
+      wx.setStorageSync('cartList', app.globalData.cartList);
+
+      // Navigate back to the cart page after a short delay
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 2000);
+    }).catch(err => {
+      console.error('Error adding order:', err)
+      wx.showToast({
+        title: 'Failed to place order',
+        icon: 'none',
+        duration: 2000
+      })
+    });
   },
 
   toGoodDetail: function (event) {
@@ -79,4 +116,6 @@ Page({
       url: "/pages/goodDetail/goodDetail?id=" + id,
     })
   },
+
+
 })

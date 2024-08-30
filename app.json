@@ -8,8 +8,8 @@
     "pages/index/typeDetail/typeDetail",
     "pages/goodDetail/goodDetail",
     "pages/index/search/search",
-    "order/order",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/me/myOrder/myOrder"
   ],
   "window": {
     "navigationBarTextStyle": "white",

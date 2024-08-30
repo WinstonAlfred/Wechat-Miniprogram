@@ -9,7 +9,7 @@
   </view>
   <block wx:if="{{orderItems.length > 0}}">
     <block wx:for="{{orderItems}}" wx:key="index">
-      <view class="good-box">
+      <view class="good-box" bind:tap="toGoodDetail" data-id="{{item._id}}">
         <image src="{{item.cover}}" class="good-img"/>
         <view class="good-right">
           <view class="good-title">{{item.title}}</view>
