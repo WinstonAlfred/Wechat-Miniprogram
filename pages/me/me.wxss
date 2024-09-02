@@ -22,3 +22,10 @@
   background-color: #FF6146;
   color: white;
 }
+
+/* Login Page */
+.button-logout{
+  background-color: #FF6146;
+  color: white;
+  margin-top: 20rpx;
+}

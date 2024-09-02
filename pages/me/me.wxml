@@ -11,8 +11,8 @@
       <image src="{{userInfo.avatarUrl}}" class="face-img"/>
     </view>
     <text class="username">{{userInfo.nickName}}</text>
+    <button class="button-logout" bindtap="logout">Logout</button>
   </block>
 
   <view class="menu-item" bindtap="toMyOrder">My Order</view>
-  <view class="menu-item" bindtap="logout" wx:if="{{userInfo}}">Logout</view>
 </view>

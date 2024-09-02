@@ -7,17 +7,38 @@ App({
       env: ENV.CLOUD_ENV
     })
     
+    // Load cart data from storage
     if (wx.getStorageSync('cartList')) {
       this.globalData.cartList = wx.getStorageSync('cartList')
     }
 
-    // Use OpenID to separate each user's order
+    // Load user info from storage
+    const storedUserInfo = wx.getStorageSync('userInfo')
+    if (storedUserInfo) {
+      this.globalData.userInfo = storedUserInfo
+    }
+
+    // Load stored openid
+    const storedOpenid = wx.getStorageSync('openid')
+    if (storedOpenid) {
+      this.globalData.openid = storedOpenid
+    }
+
+    // If no stored openid, fetch it from the server
+    if (!this.globalData.openid) {
+      this.getOpenid()
+    }
+  },
+  
+  getOpenid() {
     wx.cloud.callFunction({
       name: 'shop_get_openid'
     }).then(res => {
-      console.log(res.result.openid)
-      this.globalData.openid = res.result.openid;
-      this.checkUserLogin();
+      console.log('Fetched openid:', res.result.openid)
+      this.globalData.openid = res.result.openid
+      wx.setStorageSync('openid', res.result.openid)
+    }).catch(error => {
+      console.error('Failed to get openid:', error)
     })
   },
   
@@ -28,30 +49,15 @@ App({
     orderList: null
   },
 
-  checkUserLogin() {
-    const userInfo = wx.getStorageSync('userInfo');
-    if (userInfo) {
-      this.globalData.userInfo = userInfo;
-    }
-  },
-
+  // Helper function to update user info
   updateUserInfo(userInfo) {
-    this.globalData.userInfo = userInfo;
-    wx.setStorageSync('userInfo', userInfo);
+    this.globalData.userInfo = userInfo
+    wx.setStorageSync('userInfo', userInfo)
   },
 
+  // Helper function to clear user info (for logout)
   clearUserInfo() {
-    this.globalData.userInfo = null;
-    wx.removeStorageSync('userInfo');
-  },
-
-  addUserToDatabase(userInfo) {
-    return wx.cloud.database().collection('shop_user').add({
-      data: {
-        avatarUrl: userInfo.avatarUrl,
-        nickName: userInfo.nickName,
-        openid: this.globalData.openid
-      }
-    });
+    this.globalData.userInfo = null
+    wx.removeStorageSync('userInfo')
   }
 });

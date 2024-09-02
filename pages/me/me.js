@@ -1,3 +1,4 @@
+// pages/me/me.js
 const app = getApp()
 
 Page({
@@ -6,45 +7,59 @@ Page({
   },
 
   onLoad: function (options) {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    this.updateUserInfo()
   },
 
   onShow: function () {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    this.updateUserInfo()
   },
 
-  login() {
+  updateUserInfo: function() {
+    const userInfo = app.globalData.userInfo
+    if (userInfo) {
+      this.setData({ userInfo })
+    }
+  },
+
+  login: function() {
     wx.getUserProfile({
-      desc: 'User Information',
+      desc: '用于完善用户消息',
     })
     .then(res => {
       console.log(res)
-      this.setData({
-        userInfo: res.userInfo
-      })
-      app.globalData.userInfo = res.userInfo
-      wx.setStorageSync('userInfo', res.userInfo)
+      const userInfo = res.userInfo
+      app.updateUserInfo(userInfo)
+      this.setData({ userInfo })
 
-      return wx.cloud.database().collection('shop_user').add({
-        data: {
-          avatarUrl: res.userInfo.avatarUrl,
-          nickName: res.userInfo.nickName,
-          openid: app.globalData.openid
-        }
-      })
-    })
-    .then(() => {
+      // Save or update user in cloud database
+      return wx.cloud.database().collection('shop_user')
+        .where({ _openid: app.globalData.openid })
+        .get()
+    }).then(dbResult => {
+      if (dbResult.data.length === 0) {
+        return wx.cloud.database().collection('shop_user').add({
+          data: {
+            avatarUrl: this.data.userInfo.avatarUrl,
+            nickName: this.data.userInfo.nickName
+          }
+        })
+      } else {
+        return wx.cloud.database().collection('shop_user')
+          .doc(dbResult.data[0]._id)
+          .update({
+            data: {
+              avatarUrl: this.data.userInfo.avatarUrl,
+              nickName: this.data.userInfo.nickName
+            }
+          })
+      }
+    }).then(() => {
       wx.showToast({
         title: 'Login Successful',
         icon: 'none'
       })
-    })
-    .catch(err => {
-      console.error('Login failed:', err)
+    }).catch(error => {
+      console.error('Login error:', error)
       wx.showToast({
         title: 'Login Failed',
         icon: 'none'
@@ -52,36 +67,26 @@ Page({
     })
   },
 
-  logout() {
-    wx.showModal({
-      title: 'Logout',
-      content: 'Are you sure you want to logout?',
-      success: (res) => {
-        if (res.confirm) {
-          app.globalData.userInfo = null
-          wx.removeStorageSync('userInfo')
-          this.setData({
-            userInfo: null
-          })
-          wx.showToast({
-            title: 'Logged out successfully',
-            icon: 'none'
-          })
-        }
-      }
+  logout: function() {
+    app.clearUserInfo()
+    this.setData({ userInfo: null })
+
+    wx.showToast({
+      title: 'Logout Successful',
+      icon: 'none'
     })
   },
 
-  toMyOrder() {
-    if (this.data.userInfo) {
-      wx.navigateTo({
-        url: '/pages/me/myOrder/myOrder',
-      })
-    } else {
-      wx.showToast({
-        title: 'Please login first',
-        icon: 'none'
-      })
-    }
+  toMyOrder() { 
+    if (this.data.userInfo) { 
+    wx.navigateTo({ url: '/pages/me/myOrder/myOrder', }) 
+  } else 
+    { wx.showToast(
+      { 
+      title: 'Please login first', 
+      icon: 'none' 
+      }
+      ) 
+    } 
   }
 })
