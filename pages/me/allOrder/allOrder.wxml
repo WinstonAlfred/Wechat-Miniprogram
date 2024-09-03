@@ -1,0 +1,29 @@
+<view class="page-title">All Orders</view>
+
+<block wx:for="{{orderList}}" wx:key="_id">
+  <view class="order-wrap">
+    <view class="order-id">Order ID: {{item._id}}</view>
+    <view class="order-details">
+      <view>Name: {{item.name}}</view>
+      <view>Phone: {{item.phone}}</view>
+      <view>Total: {{item.totalMoney}}</view>
+      <view>Time: {{formatDate(item.time)}}</view>
+      <view>User ID: {{item._openid}}</view>
+    </view>
+    <view class="goods-list">
+      <block wx:for="{{item.goods}}" wx:for-item="good" wx:key="id">
+        <view class="good-item">
+          <image src="{{good.cover[0]}}" mode="aspectFit" class="good-cover"></image>
+          <view class="good-info">
+            <view>ID: {{good.id}}</view>
+            <view class="good-price">Price: Rp{{good.price}}</view>
+            <view class="good-quantity">Quantity: {{good.quantity}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</block>
+
+<view wx:if="{{hasMore}}" class="load-more">Loading more...</view>
+<view wx:else class="no-more">No more orders</view>

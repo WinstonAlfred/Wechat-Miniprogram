@@ -9,7 +9,10 @@
     "pages/goodDetail/goodDetail",
     "pages/index/search/search",
     "pages/order/order",
-    "pages/me/myOrder/myOrder"
+    "pages/me/myOrder/myOrder",
+    "pages/me/admin/admin",
+    "pages/me/user/user",
+    "pages/me/allOrder/allOrder"
   ],
   "window": {
     "navigationBarTextStyle": "white",

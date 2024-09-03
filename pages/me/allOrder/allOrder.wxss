@@ -1,0 +1,57 @@
+.page-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.order-wrap {
+  background-color: #f8f8f8;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.order-id {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.order-details {
+  margin-bottom: 15px;
+}
+
+.order-details view {
+  margin-bottom: 5px;
+}
+
+.goods-list {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 10px;
+}
+
+.good-item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.good-cover {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.good-info {
+  flex: 1;
+}
+
+.good-price, .good-quantity {
+  color: #888;
+}
+
+.load-more, .no-more {
+  text-align: center;
+  padding: 10px;
+  color: #888;
+}

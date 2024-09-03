@@ -1,18 +1,32 @@
 <view class="container">
-  <block wx:if="{{!userInfo}}">
-    <view class="face-wrap">
-      <image src="/images/user-removebg-preview.png" class="face-img"/>
-    </view>
-    <button class="button-login" bindtap="login">Login</button>
-  </block>
-  
-  <block wx:else>
-    <view class="face-wrap">
-      <image src="{{userInfo.avatarUrl}}" class="face-img"/>
-    </view>
-    <text class="username">{{userInfo.nickName}}</text>
-    <button class="button-logout" bindtap="logout">Logout</button>
-  </block>
+  <view wx:if="{{!userInfo}}" class="login-container">
+    <button class="login-btn" bindtap="login">Login</button>
+  </view>
 
-  <view class="menu-item" bindtap="toMyOrder">My Order</view>
+  <view wx:else class="user-container">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text class="nickname">{{userInfo.nickName}}</text>
+      <text class="role">{{isAdmin ? 'Admin' : 'User'}}</text>
+    </view>
+
+    <view wx:if="{{isAdmin && newOrderNotification}}" class="notification">
+      <text>New order received!</text>
+      <button bindtap="dismissNotification">Dismiss</button>
+    </view>
+
+    <view wx:if="{{!isAdmin}}" class="user-options">
+      <view class="option-item" bindtap="navigateToMyOrder">
+        <text>My Order</text>
+      </view>
+    </view>
+
+    <view wx:if="{{isAdmin}}" class="admin-options">
+      <view class="option-item" bindtap="navigateToAllOrders">
+        <text>View All Orders</text>
+      </view>
+    </view>
+
+    <button class="logout-btn" bindtap="logout">Logout</button>
+  </view>
 </view>

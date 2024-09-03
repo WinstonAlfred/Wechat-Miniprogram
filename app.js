@@ -7,6 +7,10 @@ App({
       env: ENV.CLOUD_ENV
     })
     
+    this.loadStoredData()
+  },
+  
+  loadStoredData() {
     // Load cart data from storage
     if (wx.getStorageSync('cartList')) {
       this.globalData.cartList = wx.getStorageSync('cartList')
@@ -59,5 +63,9 @@ App({
   clearUserInfo() {
     this.globalData.userInfo = null
     wx.removeStorageSync('userInfo')
+    wx.removeStorageSync('cartList')
+    this.globalData.cartList = []
+    this.globalData.orderList = null
+    // Don't clear openid as it's tied to the device, not the user session
   }
 });
