@@ -1,5 +1,11 @@
 <view class="page-title">All Orders</view>
 
+<view class="search-container">
+  <input type="text" placeholder="Search by name" bindinput="onSearchInput" value="{{searchQuery}}" />
+  <image class="search-box" bindtap="onSearch" src="/images/search.png"></image>
+</view>
+
+
 <block wx:for="{{orderList}}" wx:key="_id">
   <view class="order-wrap">
     <view class="order-id">Order ID: {{item._id}}</view>
