@@ -87,10 +87,3 @@ To work with this project, you'll need:
 - **project.config.json**: Project configuration
 - **env.js**: Environment variables
 
-## License
-
-[Include your chosen license here]
-
-## Contact
-
-[Your contact information or link to your GitHub profile]
