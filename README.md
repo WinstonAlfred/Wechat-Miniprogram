@@ -34,6 +34,7 @@ To work with this project, you'll need:
 
 ## Project Structure
 
+```
 .
 ├── .eslintrc.js
 ├── .gitignore
@@ -127,6 +128,7 @@ To work with this project, you'll need:
 ├── sitemap.json
 └── utils
     └── util.js
+```
 
 ## Main Components
 
