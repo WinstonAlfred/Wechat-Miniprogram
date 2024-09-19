@@ -22,7 +22,7 @@ This repository contains the source code for an online shop mini program develop
 To work with this project, you'll need:
 
 - [WeChat Developer Tools](https://developers.weixin.qq.com/miniprogram/en/dev/devtools/download.html)
-- A WeChat Developer account
+- A WeChat MiniProgram account
 - Basic knowledge of WXML, WXSS, and JavaScript
 
 ## Setup
@@ -34,42 +34,99 @@ To work with this project, you'll need:
 
 ## Project Structure
 
-```
+.
 ├── .eslintrc.js
 ├── .gitignore
 ├── app.js
 ├── app.json
 ├── app.wxss
-├── cloud/
-│   └── shop_get_openid/
+├── cloud
+│   └── shop_get_openid
 │       ├── config.json
 │       ├── index.js
 │       └── package.json
 ├── env.js
-├── images/
-│   └── [various image files]
-├── order/
-│   ├── order.js
-│   ├── order.json
-│   ├── order.wxml
-│   └── order.wxss
-├── pages/
-│   ├── cart/
-│   ├── goodDetail/
-│   ├── index/
-│   │   ├── bannerDetail/
-│   │   ├── search/
-│   │   └── typeDetail/
-│   ├── me/
-│   │   └── myOrder/
-│   ├── order/
-│   └── type/
+├── images
+│   ├── add_button.png
+│   ├── cart_no.png
+│   ├── cart_yes.png
+│   ├── checked_button.png
+│   ├── home_no.png
+│   ├── home_yes.png
+│   ├── me_no.png
+│   ├── me_yes.png
+│   ├── minus_button.png
+│   ├── search.png
+│   ├── shoppingbag_no.jpg
+│   ├── type_no.png
+│   ├── type_yes.png
+│   ├── unchecked_button.png
+│   └── user-removebg-preview.png
+├── pages
+│   ├── cart
+│   │   ├── cart.js
+│   │   ├── cart.json
+│   │   ├── cart.wxml
+│   │   └── cart.wxss
+│   ├── goodDetail
+│   │   ├── goodDetail.js
+│   │   ├── goodDetail.json
+│   │   ├── goodDetail.wxml
+│   │   └── goodDetail.wxss
+│   ├── index
+│   │   ├── bannerDetail
+│   │   │   ├── bannerDetail.js
+│   │   │   ├── bannerDetail.json
+│   │   │   ├── bannerDetail.wxml
+│   │   │   └── bannerDetail.wxss
+│   │   ├── index.js
+│   │   ├── index.json
+│   │   ├── index.wxml
+│   │   ├── index.wxss
+│   │   ├── search
+│   │   │   ├── search.js
+│   │   │   ├── search.json
+│   │   │   ├── search.wxml
+│   │   │   └── search.wxss
+│   │   └── typeDetail
+│   │       ├── typeDetail.js
+│   │       ├── typeDetail.json
+│   │       ├── typeDetail.wxml
+│   │       └── typeDetail.wxss
+│   ├── me
+│   │   ├── allOrder
+│   │   │   ├── allOrder.js
+│   │   │   ├── allOrder.json
+│   │   │   ├── allOrder.wxml
+│   │   │   └── allOrder.wxss
+│   │   ├── me.js
+│   │   ├── me.json
+│   │   ├── me.wxml
+│   │   ├── me.wxss
+│   │   ├── myOrder
+│   │   │   ├── myOrder.js
+│   │   │   ├── myOrder.json
+│   │   │   ├── myOrder.wxml
+│   │   │   └── myOrder.wxss
+│   │   └── user
+│   │       ├── user.js
+│   │       └── user.wxml
+│   ├── order
+│   │   ├── order.js
+│   │   ├── order.json
+│   │   ├── order.wxml
+│   │   └── order.wxss
+│   └── type
+│       ├── type.js
+│       ├── type.json
+│       ├── type.wxml
+│       └── type.wxss
 ├── project.config.json
 ├── project.private.config.json
+├── README.md
 ├── sitemap.json
-└── utils/
+└── utils
     └── util.js
-```
 
 ## Main Components
 
